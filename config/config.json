@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "root",
+    "database": "botb_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "server_port": 3000
+  },  
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "botb_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "server_port": 3000
+  },
+  "production": {
+    "username": "postgres",
+    "password": "root",
+    "database": "botb_prod",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "server_port": 3000
+  }
+}

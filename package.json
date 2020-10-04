@@ -1,0 +1,24 @@
+{
+  "name": "botb",
+  "version": "1.0.0",
+  "description": "botb server",
+  "main": "index.js",
+  "scripts": {
+    "dev": "export NODE_ENV=development || set NODE_ENV=development && node index.js",
+    "prod": "export NODE_ENV=production || set NODE_ENV=production && node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7",
+    "pg": "^8.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
