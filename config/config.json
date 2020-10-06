@@ -5,7 +5,9 @@
     "database": "botb_dev",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "server_port": 3000
+    "server_port": 3000,
+    "secret": "shhhitsasecret",
+    "logging": false
   },  
   "test": {
     "username": "postgres",
@@ -13,7 +15,9 @@
     "database": "botb_test",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "server_port": 3000
+    "server_port": 3000,
+    "secret": "shhhitsasecret",
+    "logging": false
   },
   "production": {
     "username": "postgres",
@@ -21,6 +25,8 @@
     "database": "botb_prod",
     "host": "127.0.0.1",
     "dialect": "postgres",
-    "server_port": 3000
+    "server_port": 3000,
+    "secret": "shhhitsasecret",
+    "logging": false
   }
 }

@@ -1,7 +1,11 @@
 const path = require('path');
-const AuthController = require(path.resolve('./modules/auth/auth.controller'));
-const { verifyRules, registerRules, signInRules } = require(path.resolve('./modules/auth/auth.validator'));
+const rules = require(path.resolve('./modules/auth/auth.validator'));
+const authController = require(path.resolve('./modules/auth/auth.controller'));
 
-module.exports = function(router) {
+module.exports = function (router) {
+  // API TO REGISTER USER 
+  router.post('/api/auth/register', rules.registerRules, rules.verifyRules, authController.register);
 
+  // API TO SIGN-IN USER 
+  router.post('/api/auth/signIn', rules.signInRules, rules.verifyRules, authController.signIn);
 };
