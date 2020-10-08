@@ -23,6 +23,9 @@ acl.allow([{
   },{
     resources: '/api/product/:productId',
     permissions: ['delete']
+  },{
+    resources: '/api/products',
+    permissions: ['get']
   }]
 }]);
 

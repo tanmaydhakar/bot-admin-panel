@@ -11,24 +11,24 @@ module.exports = {
          defaultValue: Sequelize.literal('uuid_generate_v4()')
        },
        title: {
-         type: Sequelize.STRING,
+         type: Sequelize.TEXT,
          allowNull:false
        },
        description: {
-         type: Sequelize.STRING,
+         type: Sequelize.TEXT,
          allowNull:false
        },
        youtube_link: {
-         type: Sequelize.STRING
+         type: Sequelize.TEXT
        },
        thumbnail_link: {
-         type: Sequelize.STRING
+         type: Sequelize.TEXT
        },
        product_images: {
-         type: DataTypes.ARRAY(DataTypes.STRING),
+         type: Sequelize.DataTypes.ARRAY(Sequelize.DataTypes.STRING),
        },
        created_by: {
-         type: DataTypes.UUID,
+         type: Sequelize.DataTypes.UUID,
          allowNull: false,
          references: {
            model: 'users',
@@ -36,7 +36,7 @@ module.exports = {
          }
        },
        updated_by: {
-         type: DataTypes.UUID,
+         type: Sequelize.DataTypes.UUID,
          allowNull: false,
          references: {
            model: 'users',

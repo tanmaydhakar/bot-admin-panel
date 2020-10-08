@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     roles: {
       type: DataTypes.ARRAY(DataTypes.TEXT),
-      defaultValue: ['user']
+      defaultValue: ['User, Admin']
     }
   }, {
     sequelize,

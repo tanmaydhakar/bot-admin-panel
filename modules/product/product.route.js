@@ -5,6 +5,10 @@ const productController = require(path.resolve('./modules/product/product.contro
 const productPolicy = require(path.resolve('./modules/product/product.policy'));
 
 module.exports = function (router) {
+
+  //API TO LIST ALL PRODUCTS
+  router.get('/api/products', authPolicy.verifyToken, productPolicy.isAllowed, productController.index);
+
   //API TO UPLOAD A PRODUCT
   router.post('/api/product', authPolicy.verifyToken, productPolicy.isAllowed, rules.upload, rules.verifyRules, productController.insert);
 

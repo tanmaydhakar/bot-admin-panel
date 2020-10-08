@@ -5,6 +5,23 @@ const errorHandler = require(path.resolve('./utilities/errorHandler'));
 const serializer = require(path.resolve('./modules/product/product.serializer'));
 const Product = db.Product;
 
+
+// SHOW PRODUCT METHOD
+const index = async function(req, res){
+  try{
+      const showProducts = await Product.findAll();
+      const responseData = await serializer.index(showProducts);
+
+      return res.status(200).send({
+          statusCode: 200,
+          product: responseData
+        });
+  } catch (error) {
+  const errorResponse = errorHandler.getErrorMsg(error);
+  return res.status(errorResponse.statusCode).send(errorResponse);
+}
+};
+
 // SHOW PRODUCT METHOD
 const show = async function(req, res){
     try{
@@ -82,6 +99,7 @@ const patch = async function(req, res){
 };
 
 module.exports = {
+    index,
     show,
     insert,
     destroy,

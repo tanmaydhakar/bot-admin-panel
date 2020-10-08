@@ -1,7 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+
+const Model = require('sequelize').Model;
+
+const typeEnum = ['Mobile', 'Web'];
 module.exports = (sequelize, DataTypes) => {
   class Game extends Model {
     /**
@@ -15,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   };
   Game.init({
     link: {
-      allowNull: false,
-      type: Sequelize.STRING
+      type: DataTypes.STRING(1000),
+      allowNull: false
     },
     type: {
-      allowNull: false,
-      type: Sequelize.STRING
+      type: DataTypes.ENUM(typeEnum),
+      allowNull: false
     },
     created_by: {
       type: DataTypes.UUID,
@@ -45,5 +46,30 @@ module.exports = (sequelize, DataTypes) => {
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   });
+
+  Game.uploadGameImage = async function (data, req) {
+    const payload = {
+      link : data.link,
+      type : data.type,
+      created_by : req.user.id,
+      updated_by : req.user.id
+    }
+
+    const banner = await Game.create(payload);
+    return banner;
+  };
+
+
+  Game.prototype.patchGameImage = async function(data){
+    if(data.body.link){
+      this.link = data.body.link;
+    }
+    if(data.body.type){
+      this.type = data.body.type;
+    }
+    this.updated_by = data.user.id;
+
+    return await this.save();
+  };
   return Game;
 };

@@ -25,7 +25,7 @@ const sendMail = async function (data, type) {
 
   if (type === 'forgot') {
     template = `<p>Hi ${data.displayName},<br><br>As you have requested for reset password instructions, here they are, please follow the URL:</p>
-    <p><a href="${process.env.host}${data.forgotPasswordToken}">Reset Password</a><br><br>Alternatively, open the following url in your browser<br><br><a href="${process.env.host}/resetPassword/${data.forgotPasswordToken}">${process.env.host}/resetPassword/${data.forgotPasswordToken}</a></p>`;
+    <p><a href="${process.env.domain}${data.forgotPasswordToken}">Reset Password</a><br><br>Alternatively, open the following url in your browser<br><br><a href="${process.env.domain}/resetPassword/${data.forgotPasswordToken}">${process.env.host}/resetPassword/${data.forgotPasswordToken}</a></p>`;
   }
 
   if (template) {

@@ -15,18 +15,18 @@ module.exports = (sequelize, DataTypes) => {
   };
   Product.init({
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull:false
     }, 
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull:false
     }, 
     youtube_link: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     }, 
     thumbnail_link: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     product_images: {
       type: DataTypes.ARRAY(DataTypes.STRING),

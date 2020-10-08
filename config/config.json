@@ -8,7 +8,14 @@
     "server_port": 3000,
     "secret": "shhhitsasecret",
     "logging": false,
-    "domain": "localhost:3000/"
+    "domain": "localhost:3000",
+    "email_host": "smtp.gmail.com",
+    "email_from": "Botb",
+    "email_port": 587,
+    "email_service": "gmail",
+    "email_secure": false,
+    "email_id": "",
+    "email_pass": ""
   },  
   "test": {
     "username": "postgres",
@@ -19,7 +26,14 @@
     "server_port": 3000,
     "secret": "shhhitsasecret",
     "logging": false,
-    "domain": "localhost:3000/"
+    "domain": "localhost:3000",
+    "email_host": "smtp.gmail.com",
+    "email_from": "Botb",
+    "email_port": 587,
+    "email_service": "gmail",
+    "email_secure": false,
+    "email_id": "",
+    "email_pass": ""
   },
   "production": {
     "username": "postgres",
@@ -30,6 +44,13 @@
     "server_port": 3000,
     "secret": "shhhitsasecret",
     "logging": false,
-    "domain": "localhost:3000/"
+    "domain": "localhost:3000",
+    "email_host": "smtp.gmail.com",
+    "email_from": "Botb",
+    "email_port": 587,
+    "email_service": "gmail",
+    "email_secure": false,
+    "email_id": "",
+    "email_pass": ""
   }
 }

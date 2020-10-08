@@ -12,14 +12,14 @@ module.exports = {
        },
        link: {
          allowNull: false,
-         type: Sequelize.STRING
+         type: Sequelize.TEXT
        },
        type: {
          allowNull: false,
          type: Sequelize.STRING
        },
        created_by: {
-         type: DataTypes.UUID,
+         type: Sequelize.DataTypes.UUID,
          allowNull: false,
          references: {
            model: 'users',
@@ -27,7 +27,7 @@ module.exports = {
          }
        },
        updated_by: {
-         type: DataTypes.UUID,
+         type: Sequelize.DataTypes.UUID,
          allowNull: false,
          references: {
            model: 'users',
