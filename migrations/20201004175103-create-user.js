@@ -39,6 +39,10 @@ module.exports = {
           reset_password_token: {
             type: Sequelize.TEXT
           },
+          roles: {
+            allowNull: false,
+            type: Sequelize.ARRAY(Sequelize.TEXT)
+          },
           created_at: {
             allowNull: false,
             type: Sequelize.DATE

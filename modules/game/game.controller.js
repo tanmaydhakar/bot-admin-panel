@@ -2,19 +2,18 @@ const err = new Error();
 const path = require("path");
 const db = require(path.resolve('./models/index'));
 const errorHandler = require(path.resolve('./utilities/errorHandler'));
-const serializer = require(path.resolve('./modules/product/product.serializer'));
-const Product = db.Product;
+const serializer = require(path.resolve('./modules/game/game.serializer'));
+const Game = db.Game;
 
-// SHOW PRODUCT METHOD
-const show = async function(req, res){
+// LISTS ALL GAME IMAGES
+const index = async function(req, res){
     try{
-        const productId = req.params.productId;
-        const product = await Product.findByPk(productId);
-        const responseData = await serializer.show(product);
+        const showGame = await Game.findAll();
+        const responseData = await serializer.index(showGame);
 
         return res.status(200).send({
             statusCode: 200,
-            product: responseData
+            banners: responseData
           });
     } catch (error) {
     const errorResponse = errorHandler.getErrorMsg(error);
@@ -22,19 +21,16 @@ const show = async function(req, res){
   }
 };
 
-//UPLOAD PRODUCT METHOD
-const insert = async function(req, res){
+// UPLOAD GAME IMAGE METHOD
+const upload = async function(req, res){
     try{
-        const insertProduct = await Product.insertProduct(req);
-        if (!insertProduct) {
-            err.statusCode = 422;
-            err.message = 'Unable to insert product';
-            throw err;
-          }
+      for (let i = 0; i < req.body.length; i++) {
+        await Game.uploadGameImage(req.body[i], req);
+      }
 
         return res.status(200).send({
             statusCode: 200,
-            message: 'Product inserted successfully!'
+            message: 'Game image uploaded successfully!'
           });
     } catch (error) {
     const errorResponse = errorHandler.getErrorMsg(error);
@@ -42,16 +38,16 @@ const insert = async function(req, res){
   }
 };
 
-//DELETE PRODUCT METHOD
+// DELETE GAME IMAGE METHOD
 const destroy = async function(req, res){
     try{
-        const productId = req.params.productId;
-        const product = await Product.findByPk(productId);
-        await product.destroy();
+        const gameImageId = req.params.gameImageId;
+        const gameImage = await Game.findByPk(gameImageId);
+        await gameImage.destroy();
 
         return res.status(200).send({
             statusCode: 200,
-            message: 'Product deleted successfully!'
+            message: 'Game image deleted successfully!'
           });
     } catch (error) {
     const errorResponse = errorHandler.getErrorMsg(error);
@@ -59,21 +55,21 @@ const destroy = async function(req, res){
   }
 };
 
-// UPDATE PRODUCT METHOD
+// UPDATE GAME IMAGE METHOD
 const patch = async function(req, res){
     try {
-        const productId = req.params.productId;
-        const product = await Product.findByPk(productId);
-        const patchProduct = await product.patchProduct(req);
-        if (!patchProduct) {
+        const gameImageId = req.params.gameImageId;
+        const gameImage = await Game.findByPk(gameImageId);
+        const patchGameImage = await gameImage.patchGameImage(req);
+        if (!patchGameImage) {
             err.statusCode = 422;
-            err.message = 'Unable to update product';
+            err.message = 'Unable to update game image';
             throw err;
           }
 
           return res.status(200).send({
             statusCode: 200,
-            message: 'Product updated successfully!'
+            message: 'Game image updated successfully!'
           });
     } catch (error) {
     const errorResponse = errorHandler.getErrorMsg(error);
@@ -82,8 +78,8 @@ const patch = async function(req, res){
 };
 
 module.exports = {
-    show,
-    insert,
+    index,
+    upload,
     destroy,
     patch
   };

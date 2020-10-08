@@ -43,6 +43,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     reset_password_token: {
       type: DataTypes.TEXT
+    },
+    roles: {
+      type: DataTypes.ARRAY(DataTypes.TEXT),
+      defaultValue: ['user']
     }
   }, {
     sequelize,

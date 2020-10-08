@@ -12,16 +12,16 @@ acl.allow([{
 }, {
   roles: ['Admin'],
   allows: [{
-    resources: '/api/product/:productId',
+    resources: '/api/games',
     permissions: ['get']
   },{
-    resources: '/api/product',
+    resources: '/api/games',
     permissions: ['post']
   },{
-    resources: '/api/product/:productId',
+    resources: '/api/game/:gameImageId',
     permissions: ['patch']
   },{
-    resources: '/api/product/:productId',
+    resources: '/api/game/:gameImageId',
     permissions: ['delete']
   }]
 }]);

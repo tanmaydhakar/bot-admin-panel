@@ -1,0 +1,9 @@
+{
+    "display_name": "Admin",
+    "first_name": "Botb",
+    "last_name": "Admin",
+    "email": "admin@gmail.com",
+    "phone": "1234567898",
+    "password": "botbadmin",
+    "roles": ["User", "Admin"]
+}

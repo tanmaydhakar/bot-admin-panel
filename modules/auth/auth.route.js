@@ -8,4 +8,10 @@ module.exports = function (router) {
 
   // API TO SIGN-IN USER 
   router.post('/api/auth/signIn', rules.signInRules, rules.verifyRules, authController.signIn);
+
+  // API TO SEND RESET PASSWORD INSTRUCTIONS EMAIL
+  router.post('/api/auth/forgotPassword', authController.forgotPassword);
+
+  // API TO RESET USERS PASSWORD
+  router.post('/api/auth/resetPassword/:token', rules.resetPasswordRules, rules.verifyRules, authController.resetPassword);
 };

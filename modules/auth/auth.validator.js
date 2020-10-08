@@ -83,6 +83,43 @@ const registerRules = [
     })
 ];
 
+// RESET PASSWORD VALIDATION RULES
+const resetPasswordRules = [
+  param('token')
+    .exists().withMessage('Token does not exists!')
+    .trim()
+    .custom((value) => {
+      const field = {
+        reset_password_token: value
+      };
+      return User.findBySpecificField(field).then((user) => {
+        if (!user) {
+          return Promise.reject(new Error('Invalid token!'));
+        }
+        return true;
+      });
+    })
+];
+
+// FORGET PASSWORD VALIDATION RULES
+const forgetPasswordRules = [
+  body('email')
+    .exists().withMessage('Email does not exists!')
+    .isEmail().withMessage('Invalid email format!')
+    .normalizeEmail()
+    .custom((value) => {
+      const field = {
+        email: value
+      };
+      return User.findBySpecificField(field).then((user) => {
+        if (!user) {
+          return Promise.reject(new Error('Email already exists!'));
+        }
+        return true;
+      });
+    })
+];
+
 const verifyRules = function (req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -100,4 +137,6 @@ module.exports = {
   verifyRules,
   signInRules,
   registerRules,
+  resetPasswordRules,
+  forgetPasswordRules
 };

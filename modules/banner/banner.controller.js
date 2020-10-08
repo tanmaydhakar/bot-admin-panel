@@ -5,14 +5,15 @@ const errorHandler = require(path.resolve('./utilities/errorHandler'));
 const serializer = require(path.resolve('./modules/banner/banner.serializer'));
 const Banner = db.Banner;
 
-const show = async function(req, res){
+// LISTS ALL BANNERS
+const index = async function(req, res){
     try{
-        const showBanner = await Banner.showBanner(req);
-        const responseData = await serializer.show(showBanner);
+        const showBanner = await Banner.findAll();
+        const responseData = await serializer.index(showBanner);
 
         return res.status(200).send({
             statusCode: 200,
-            banner: responseData
+            banners: responseData
           });
     } catch (error) {
     const errorResponse = errorHandler.getErrorMsg(error);
@@ -20,16 +21,12 @@ const show = async function(req, res){
   }
 };
 
+// UPLOAD BANNER METHOD
 const upload = async function(req, res){
     try{
-        const bannerId = req.params.bannerId;
-        const banner = await Banner.findByPk(bannerId);
-        const uploadBanner = await banner.uploadBanner(req);
-        if (!uploadBanner) {
-            err.statusCode = 422;
-            err.message = 'Unable to upload banner';
-            throw err;
-          }
+      for (let i = 0; i < req.body.length; i++) {
+        await Banner.uploadBanner(req.body[i], req);
+      }
 
         return res.status(200).send({
             statusCode: 200,
@@ -41,6 +38,7 @@ const upload = async function(req, res){
   }
 };
 
+// DELETE BANNER METHOD
 const destroy = async function(req, res){
     try{
         const bannerId = req.params.bannerId;
@@ -57,10 +55,13 @@ const destroy = async function(req, res){
   }
 };
 
+// UPDATE BANNER METHOD
 const patch = async function(req, res){
     try {
-        const destroyBanner = await Banner.patchBanner(req);
-        if (!destroyBanner) {
+        const bannerId = req.params.bannerId;
+        const banner = await Banner.findByPk(bannerId);
+        const patchBanner = await banner.patchBanner(req);
+        if (!patchBanner) {
             err.statusCode = 422;
             err.message = 'Unable to update banner';
             throw err;
@@ -77,7 +78,7 @@ const patch = async function(req, res){
 };
 
 module.exports = {
-    show,
+    index,
     upload,
     destroy,
     patch

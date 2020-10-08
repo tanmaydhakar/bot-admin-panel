@@ -5,6 +5,7 @@ const db = require(path.resolve('./models/index'));
 const User = db.User;
 const errorHandler = require(path.resolve('./utilities/errorHandler'));
 
+//VERIFY TOKEN POLICY
 const verifyToken = async function (req, res, next) {
   try {
     if (!req.headers.authorization) {
@@ -28,23 +29,16 @@ const verifyToken = async function (req, res, next) {
       err.message = 'Invalid auth token!';
       throw err;
     }
-
-    const user = await User.findByPk(decoded.id);
-
+    
+    const user = await User.findByPk(decoded.id.id);
+    
     if (!user) {
       err.statusCode = 403;
-      err.message = 'Invalud authentication!';
+      err.message = 'Invalid authentication!';
       throw err;
     }
 
-    const rolesArray = [];
-    const roles = await user.getRoles();
-    for (let i = 0; i < roles.length; i++) {
-      rolesArray.push(roles[i].name);
-    }
-
     req.user = user;
-    req.user.roles = rolesArray;
     return next();
   } catch (error) {
     const err = errorHandler.getErrorMsg(error);

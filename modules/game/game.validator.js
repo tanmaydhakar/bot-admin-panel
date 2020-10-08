@@ -1,18 +1,18 @@
 const path = require('path');
 const db = require(path.resolve('./models/index'));
-const Banner = db.Banner;
+const Game = db.Game;
 const typeEnum = ['Mobile', 'Web'];
 const { body, param, validationResult } = require('express-validator');
 
 // GET DESTROY RULES
 const destroy = [
-    param('bannerId')
-      .exists().withMessage('bannerId does not exists!')
+    param('gameImageId')
+      .exists().withMessage('gameImageId does not exists!')
       .trim()
       .custom((value) => {
-        return Banner.findByPk(value).then((banner) => {
-          if (!banner) {
-            return Promise.reject(new Error('Banner not found!'));
+        return Game.findByPk(value).then((gameImage) => {
+          if (!gameImage) {
+            return Promise.reject(new Error('Game image not found!'));
           }
           return true;
         });
@@ -21,13 +21,13 @@ const destroy = [
 
 // GET PATCH RULES
 const patch = [
-    param('bannerId')
-      .exists().withMessage('bannerId does not exists!')
+    param('gameImageId')
+      .exists().withMessage('gameImageId does not exists!')
       .trim()
       .custom((value) => {
-        return Banner.findByPk(value).then((banner) => {
-          if (!banner) {
-            return Promise.reject(new Error('Banner not found!'));
+        return Game.findByPk(value).then((gameImage) => {
+          if (!gameImage) {
+            return Promise.reject(new Error('Game image not found!'));
           }
           return true;
         });

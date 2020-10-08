@@ -12,9 +12,17 @@ acl.allow([{
 }, {
   roles: ['Admin'],
   allows: [{
-    resources: [
-    ],
-    permissions: '*'
+    resources: '/api/banners',
+    permissions: ['get']
+  },{
+    resources: '/api/banners',
+    permissions: ['post']
+  },{
+    resources: '/api/banner/:bannerId',
+    permissions: ['patch']
+  },{
+    resources: '/api/banner/:bannerId',
+    permissions: ['delete']
   }]
 }]);
 

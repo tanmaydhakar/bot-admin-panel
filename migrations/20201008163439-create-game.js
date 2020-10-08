@@ -3,29 +3,20 @@ module.exports = {
    up: async (queryInterface, Sequelize) => {
      return queryInterface.sequelize.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
        .then(async () => {
-     await queryInterface.createTable('products', {
+     await queryInterface.createTable('games', {
        id: {
          allowNull: false,
          primaryKey: true,
          type: Sequelize.DataTypes.UUID,
          defaultValue: Sequelize.literal('uuid_generate_v4()')
        },
-       title: {
-         type: Sequelize.STRING,
-         allowNull:false
-       },
-       description: {
-         type: Sequelize.STRING,
-         allowNull:false
-       },
-       youtube_link: {
+       link: {
+         allowNull: false,
          type: Sequelize.STRING
        },
-       thumbnail_link: {
+       type: {
+         allowNull: false,
          type: Sequelize.STRING
-       },
-       product_images: {
-         type: DataTypes.ARRAY(DataTypes.STRING),
        },
        created_by: {
          type: DataTypes.UUID,
@@ -55,6 +46,6 @@ module.exports = {
    });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('products');
+    await queryInterface.dropTable('games');
   }
 };
