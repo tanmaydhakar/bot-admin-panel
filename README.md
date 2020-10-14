@@ -1,11 +1,10 @@
 ## Project Description
 
 This is the Backend API server for BotB admin panel. Developed with Node Js for http server and Postgres for database. It can perform following operations -
-1. Upload
-2. Withdraw (this operation decreases the balance of user account by given amt).
-3. Enquiry ( this operation returns the balance of user account etc).
-4. Customer will receive emails on transactions.
-5. The bank manager will be able to download excel of transaction histories for a specific time period for individual/a collection of customers.
+1. Curd operations with banner images with there types.
+2. Curd operations with game images with there types.
+3. Curd operations with product's title, description, images.
+4. Login, register, forgot and reset password.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine.
@@ -47,7 +46,7 @@ Open `botb/config/config.json` then edit it with your settings.
 ```
 
 ## Before starting the server, run migrations to prepair the database
-`npx sequelize db:migrate:all`
+`npx sequelize db:migrate`
 
 ## Running the project
 ```
